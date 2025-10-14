@@ -1,0 +1,27 @@
+<article class="rounded-lg border border-border bg-card text-foreground overflow-hidden shadow-sm hover:shadow transition">
+  <div class="relative" style="aspect-ratio: 4 / 3;">
+    <img [src]="imageUrl" alt="{{name}}" class="w-full h-full object-cover" />
+    <span *ngIf="discount" class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded bg-destructive text-destructive-foreground">-{{ discount }}%</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h3 class="text-lg font-medium overflow-hidden text-ellipsis">{{ name }}</h3>
+    <div class="text-sm text-muted-foreground">por {{ seller }}</div>
+    <div class="flex items-center gap-2">
+      <ng-container *ngIf="discountedPrice() as dp; else noDiscount">
+        <span class="text-lg line-through text-muted-foreground">{{ price | currency:'USD':'symbol':'1.2-2' }}</span>
+        <span class="text-xl font-semibold text-primary">{{ dp | currency:'USD':'symbol':'1.2-2' }}</span>
+      </ng-container>
+      <ng-template #noDiscount>
+        <span class="text-xl font-semibold">{{ price | currency:'USD':'symbol':'1.2-2' }}</span>
+      </ng-template>
+    </div>
+    <div class="flex items-center gap-1 text-primary">
+      <ng-container *ngFor="let s of stars">
+        <svg *ngIf="isFilled(s)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg *ngIf="!isFilled(s)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" width="16" height="16"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24z"/></svg>
+      </ng-container>
+  <span class="text-xs text-muted-foreground">({{ rating.toFixed(1) }})</span>
+    </div>
+    <button class="mt-2 w-full px-3 py-2 rounded-lg bg-primary text-foreground border border-border hover:opacity-90">Agregar al carrito</button>
+  </div>
+</article>

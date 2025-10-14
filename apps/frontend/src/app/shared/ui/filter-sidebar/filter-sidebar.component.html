@@ -1,0 +1,32 @@
+<aside class="w-64 shrink-0 border border-border bg-card text-foreground rounded-lg p-4 space-y-4">
+  <h2 class="text-lg font-medium">Filtros</h2>
+  <div class="space-y-2">
+    <h3 class="font-medium">Categorías</h3>
+    <ul class="space-y-1">
+      <li *ngFor="let c of categories">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="accent-primary" (change)="toggleCategory(c, $event.target.checked)" />
+          <span>{{ c }}</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <div class="space-y-2">
+    <h3 class="font-medium">Precio</h3>
+    <div class="flex items-center gap-2">
+      <input type="number" placeholder="Mín" class="w-20 px-2 py-1 rounded border border-border bg-input-background" [(ngModel)]="state.priceMin" />
+      <span>-</span>
+      <input type="number" placeholder="Máx" class="w-20 px-2 py-1 rounded border border-border bg-input-background" [(ngModel)]="state.priceMax" />
+    </div>
+  </div>
+
+  <div class="space-y-2">
+    <h3 class="font-medium">Rating</h3>
+    <div class="flex gap-2">
+      <button *ngFor="let r of [5,4,3,2,1]" class="px-2 py-1 rounded border border-border" (click)="setRating(r)">{{ r }}★</button>
+    </div>
+  </div>
+
+  <button class="w-full px-3 py-2 rounded-lg bg-primary text-foreground border border-border" (click)="onApply()">Aplicar</button>
+</aside>

@@ -1,0 +1,22 @@
+<nav class="p-3 flex items-center gap-4 border-b border-border bg-card text-foreground">
+  <button class="ml-auto px-3 py-1.5 rounded border border-border hover:bg-muted/50" (click)="toggleDark()">Toggle Dark</button>
+  <!-- CUSTOMER -->
+  <ul *ngIf="role === 'CUSTOMER'">
+    <li><a routerLink="/products">Productos</a></li>
+    <li><a routerLink="/cart">Carrito</a></li>
+    <li><a routerLink="/orders">Mis Órdenes</a></li>
+  </ul>
+
+  <!-- SELLER -->
+  <ul *ngIf="role === 'SELLER'">
+    <li><a routerLink="/my-products">Mis Productos</a></li>
+    <li><a routerLink="/sales">Ventas</a></li>
+  </ul>
+
+  <!-- ADMIN -->
+  <ul *ngIf="role === 'ADMIN'">
+    <li><a routerLink="/admin/users">Usuarios</a></li>
+    <li><a routerLink="/admin/categories">Categorías</a></li>
+    <li><a routerLink="/admin/dashboard">Panel General</a></li>
+  </ul>
+</nav>
